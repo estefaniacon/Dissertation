@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Plastic Kingdom</title>
+  <script src="//d3js.org/d3.v4.min.js" charset="utf-8"></script>
+</head>
+<body>
+  <!--This is where all the CSS is-->
+  <style>
+
+  body {
+    background: white;
+
+  }
+
+
+ .header {
+   font-family: Big Caslon;
+   font-size: 1.5em;
+   color: white;
+   position: fixed;
+   top:0;
+   width: 100%;
+   height: 80px;
+
+
+ }
+
+ /* p {
+   font-family: Big Caslon;
+ } */
+
+ p.form {
+   margin-left: 50px;
+   margin-right: 50px;
+ }
+
+ h3 {
+   font-size: 1.5em;
+ }
+
+#main {
+ background-image: url("Images/apples_main.jpg");
+ background-repeat: no-repeat;
+ margin-top: 5px;
+}
+
+nav {
+  background-color: white;
+  display: flex;
+  margin-top: 100px;
+  margin-left: 250px;
+  margin-right: 250px;
+}
+
+ #food_story {
+   margin-left: 250px;
+   margin-right: 250px;
+   background-color: white;
+   padding-top: 50px;
+   padding-bottom: 50px;
+   padding-right: 50px;
+   padding-left: 50px;
+ }
+
+
+ #sea_story {
+   margin-left: 250px;
+   margin-right: 250px;
+   background-color: white;
+   padding-top: 50px;
+   padding-bottom: 50px;
+   padding-right: 50px;
+   padding-left: 50px;
+ }
+
+ #calculator {
+   /* border-radius: 20px; */
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   padding-top: 30px;
+   padding-left: 50px;
+   padding-right: 50px;
+   padding-bottom: 30px;
+   margin-left: 50px;
+   background-color: white;
+   opacity: 0.9;
+   margin-top: 100px;
+ }
+
+ #calculator, #result {
+   display: flex;
+   display: inline-block;
+   justify-content: space-between;
+ }
+
+  #result {
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   max-width: 400px;
+   padding-top: 30px;
+   padding-left: 30px;
+   padding-bottom: 30px;
+   background-color: white;
+   opacity: 0.9;
+   margin-left: 150px;
+ }
+
+ footer {
+   width: 100%;
+   background-color: #008080;
+   height: 120px;
+ }
+
+
+
+  </style>
+<!--CSS stops here-->
+
+<!--HTML STARTS HERE-->
+<div id = "main">
+<h1><span class = "header" style = "background-color: #008080">Plastic Kingdom</span></h1>
+<div id = "calculator">
+<p class = "p_form">Plastic Calculator<br>Find out how much plastic goes to waste when you shop</p>
+
+<!--This is the form with dropdown menus and submit button-->
+<form>
+  <p class = "p_form">Choose a Foodshop</p>
+  <select class="form-control" id = "shops">
+    <option value="Tesco Metro">Tesco Metro</option>
+    <option value="Marks & Spencer">Marks & Spencer</option>
+    <option value="Lidl">Lidl</option>
+    <option value="Sainsbury's">Sainsbury's</option>
+  </select>
+  <p class = "p_form">Choose an item you buy on a weekly basis</p>
+  <select class="form-control" id = "items">
+      <option value= "Apples">Apples</option>
+      <option value= "Avocados">Avocados</option>
+      <option value= "Bananas">Bananas</option>
+      <option value= "Brocoli">Brocoli</option>
+      <option value= "Potatoes">Potatoes</option>
+      <option value= "Tomatoes">Tomatoes</option>
+  </select>
+
+  <p class = "p_form">Choose how you shop </p>
+  <select class= "form-control" id = "plastic_or_no">
+      <option value= "plastic">with plastic packaging</option>
+      <option value= "no plastic">plastic free</option>
+  </select> </br></br>
+
+  <input type="button" value= "Calculate plastic!" id = "submit_"/>
+</form>
+</div>
+
+
+<p id = "result"></p>
+</div>
+
+<nav>
+    <div class="mainimages">
+      <a href="food.html">
+       <img src="Images/nav_image_1.png" alt="bananas wrapped in plastic">
+       <p>Continue Reading</p>
+     </a>
+     <br><br><br><br>
+        <a href="sealife.html">
+          <img src="Images/nav_image_2.png" alt="whale made out of plastic waste">
+          <p>Continue Reading</p>
+        </a>
+    </div>
+  </nav>
+  <br><br><br><br>
+
+
+<!--JAVASCRIPT STARTS HERE-->
+<script>
+
+
+
+/*This retrieves the CSV File. Even if I'm not using d3 it is useful to read data.
+Here, d3.csv converts the file into an array of objects*/
+  d3.csv("Foodshop List.csv", function (foodshop_data) {
+      console.log(foodshop_data);
+
+
+
+      /*forEach is used to iterate over the array of data and the + operator to
+      convert strings into numbers */
+          foodshop_data.forEach(function(d){
+            d[" Number of plastic packages"] = +d[" Number of plastic packages"];
+            d["Plastic Price"] = +d["Plastic Price"];
+            d["Plastic Free Price"] = +d["Plastic Free Price"];
+            d["Number of items"] = +d["Number of items"];
+
+        });
+
+/*Creates variables that are equal to numbers to multiply the data by one, five and ten years*/
+          var fifty_two = 52;
+          var two_sixty = 260;
+          var five_twenty = 520;
+
+      /*This are three little unknown functions to change the value of each
+      dropdown menu when there is a change*/
+              d3.select("#shops")
+                .on("change", function(d) {
+                  select_shop = this.value;
+                  console.log(select_shop)
+                  console.log(filterData());
+
+                });
+
+
+              d3.select(".items")
+                  .on("change", function(d) {
+                    select_item = this.value;
+                    console.log(select_item)
+                    console.log(filterData());
+
+                  });
+
+
+
+
+
+              d3.select("#plastic_or_no")
+                    .on("change", function(d) {
+                      select_plastic = this.value;
+                      console.log(select_plastic)
+                      console.log(filterData());
+                    });
+
+
+
+
+/*select the submit button and give it a variable*/
+                  var submit_button = d3.select("#submit_");
+
+
+
+                  /*Creates a function so that when the user clicks on the submit button it updates
+                  the paragraph text to match the selection made by the user*/
+
+                                    submit_button.on("click", function update() {
+                                      d3.select("#result")
+                                        .data(filtered_data) /*Use the filter data instead of the original csv*/
+                                        .html(function(d){
+                                          if (select_plastic == "plastic"){
+                                            return  "If you buy " + d["Number of items"] + " " + select_item + " in "
+                                            + select_shop + " every week..." + "</br>" + "</br>" +"In one year, " + d[" Number of plastic packages"] * fifty_two
+                                            + " plastic packages will go to waste and you'd spend " + "£" + d["Plastic Price"] * fifty_two + "</br>" + "</br>"
+                                            + "In 5 years, " + d[" Number of plastic packages"] * two_sixty
+                                            + " plastic packages will go to waste and you'd spend " + "£" + d["Plastic Price"] * two_sixty + "." + "</br>" + "</br>"
+                                            + "In 10 years, " + d[" Number of plastic packages"] * five_twenty
+                                            + " plastic packages will go to waste and you'd spend " + "£" + d["Plastic Price"] * five_twenty + "." +"</br>" + "</br>"
+                                            + "Change your selection to see what would happen if you go plastic free.";
+                                          } else if (d["Plastic Free Option"] === "loose") {
+                                            return "If you buy " + d["Number of items"] + " " + d["Plastic Free Option"]
+                                            + " " + select_item + " in " + select_shop
+                                            + " every week..." + "</br>" + "</br>" + "In one year you'd generate zero plastic waste and would spend " + "£"
+                                            + d["Plastic Free Price"] * fifty_two + "</br>" + "</br>"
+                                            +"In 5 years, zero plastic waste and " + "£" + d["Plastic Free Price"] * two_sixty + "." + "</br>" + "</br>"
+                                            +"In 10 yeas, zero plastic waste and " + "£" + d["Plastic Free Price"] * five_twenty + ".";
+                                          } else {
+                                            return "Unfortunately, " + select_shop + " might not have any plastic free alternatives.";
+                                        }
+
+                                       });
+                                   });
+
+
+
+
+
+
+
+
+                          /*Creates variables to select the buttons and the options inside
+                          those buttons we created with html by their id*/
+
+
+                              var select_shop = d3.select("#shops").node().value;
+
+                              var select_item = d3.select("#items").node().value;
+
+                              var select_plastic = d3.select("#plastic_or_no").node().value;
+
+                              filterData();
+
+
+                  /*Create variable for the specific data we want and then creates a function that filters
+                  the data and links it to our dropdown menu buttons.*/
+                              var filtered_data;
+
+                              function filterData() {
+                                return filtered_data = foodshop_data.filter(function(d) {
+                                  return d.Foodshop === select_shop && d.Item === select_item || d[" Number of plastic packages"] && d["Plastic Price"] && d["Plastic Free Price"] && d["Plastic Free Option"] === select_plastic;
+                                });
+                              };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+<footer>
+Photogallery<br>
+Contact information<br>
+links<br>
+Social media
+</footer>
+</html>

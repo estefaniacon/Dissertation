@@ -1,0 +1,61 @@
+<style>
+
+   a {
+       text-decoration: none;
+       color: white;
+     }
+
+     .header {
+       padding: 10px 16px;
+       background: #008080;
+       color: #f1f1f1;
+       position: fixed;
+       top: 0;
+       width: 100%;
+
+     }
+
+     .foodcontent {
+       padding: 16px;
+     }
+
+     /* .sticky {
+       position: fixed;
+       top: 0;
+       width: 100%;
+     }
+
+     .sticky + .foodcontent {
+       padding-top: 102px;
+ } */
+
+     #food_story {
+       margin-left: 250px;
+       margin-right: 250px;
+       background-color: white;
+       padding-top: 50px;
+       padding-bottom: 50px;
+       padding-right: 50px;
+       padding-left: 50px;
+     }
+
+     .gallery {
+       margin-left: 250px;
+       margin-right: 250px;
+     }
+
+     .gallery img {
+       width: 321px;
+       height: 333px;
+       padding: 5px;
+       filter: grayscale(0);
+       transition: 1s;
+     }
+
+     .gallery img:hover {
+       filter: grayscale(100%);
+       transform: scale(1.1);
+
+     }
+
+ </style>
