@@ -1,17 +1,39 @@
 <style>
 
    a {
-       text-decoration: none;
-       color: white;
+     text-decoration: none;
+     color: white;
+   }
+
+   .a_final {
+       text-decoration: underline;
+       color:black;
+       text-decoration-color: red;
+       text-align: center;
      }
 
+   .a_story:hover {
+     color:purple;
+   }
+
+   .a_story {
+     text-decoration: underline;
+     color: black;
+   }
+
      .header {
-       padding: 10px 16px;
-       background: #008080;
-       color: #f1f1f1;
-       position: fixed;
-       top: 0;
-       width: 100%;
+         padding: 10px 16px;
+         background: #A80000;
+         color: #f1f1f1;
+         position: fixed;
+         top: 0;
+         width: 1278px;
+         z-index: 1;
+         font-size: 1em;
+         color: white;
+         font-family: Big Caslon;
+
+
 
      }
 
@@ -30,6 +52,7 @@
  } */
 
      #food_story {
+       margin-top: 150px;
        margin-left: 250px;
        margin-right: 250px;
        background-color: white;
@@ -37,25 +60,71 @@
        padding-bottom: 50px;
        padding-right: 50px;
        padding-left: 50px;
+       font-family: Big Caslon;
      }
 
+
      .gallery {
-       margin-left: 250px;
-       margin-right: 250px;
+       margin-left: 260px;
+       margin-right: 150px;
+       z-index: -1;
+       align-items: center;
      }
 
      .gallery img {
        width: 321px;
        height: 333px;
-       padding: 5px;
+       padding: 20px;
        filter: grayscale(0);
        transition: 1s;
      }
+
+
+     /* .img__description {
+       width: 321px;
+       color: blue;
+       visibility: visible;
+       opacity: 0;
+     } */
 
      .gallery img:hover {
        filter: grayscale(100%);
        transform: scale(1.1);
 
+     }
+
+     .gallery_title {
+       text-align: center;
+       font-size: 3em;
+       font-family: Big Caslon;
+     }
+
+     .gallery_sum {
+       text-align: center;
+       font-size: 1.3em;
+       font-family: Big Caslon;
+     }
+
+     .container {
+       position: relative;
+       text-align: center;
+       display: inline-block;
+       flex-direction: row;
+
+     }
+
+     .centered_text {
+       color: white;
+       font-size: 2em;
+       font-family: Big Caslon;
+       position: absolute;
+       top: 50%;
+       left: 50%;
+      transform: translate(-50%, -50%);
+     }
+
+     .next_story {
+       margin-bottom: 180px;
      }
 
  </style>

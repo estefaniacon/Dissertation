@@ -1,0 +1,25 @@
+Item,Foodshop, Number of plastic packages,Plastic Price,Plastic Free Option,Plastic Free Price,Number of items
+Apples,Tesco Metro,1,2,loose,2.4,4
+Avocados,Tesco Metro,1,1.75,loose,1.7,2
+Bananas,Tesco Metro,1,0.9,loose,0.7,6
+Brocoli,Tesco Metro,1,0.55,No plastic free option,No plastic free option,1
+Potatoes,Tesco Metro,1,1.5,No plastic free option,No plastic free option,2
+Tomatoes,Tesco Metro,1,0.69,No plastic free option,No plastic free option,6
+Apples,Marks & Spencer,1,2.8,loose,1.35,6
+Avocados,Marks & Spencer,2,2.2,loose,2.6,2
+Bananas,Marks & Spencer,1,1.6,loose,0.78,6
+Brocoli,Marks & Spencer,1,1,loose,0.5,1
+Potatoes,Marks & Spencer,1,2.5,loose,1.25,1.5
+Tomatoes,Marks & Spencer,2,1.6,loose,0.9,3
+Apples,Lidl,1,2.16,loose,1.99,1
+Avocados,Lidl,1,1.55,loose,1.9,2
+Bananas,Lidl,1,1.19,loose,0.76,6
+Brocoli,Lidl,1,0.99,No plastic free option,No plastic free option,1
+Potatoes,Lidl,1,1.45,loose,2.5,2.5
+Tomatoes,Lidl,2,1.69,loose,2.79,5
+Apples,Sainsbury's,1,2.6,loose,0.54,6
+Avocados,Sainsbury's,2,1.8,loose,2.2,2
+Bananas,Sainsbury's,1,0.9,loose,0.78,6
+Brocoli,Sainsbury's,1,0.55,No plastic free option,No plastic free option,1
+Potatoes,Sainsbury's,1,1.75,loose,2.5,2.5
+Tomatoes,Sainsbury's,1,0.7,loose,0.8,6

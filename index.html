@@ -10,28 +10,37 @@
 <body>
   <!--This is where all the CSS is-->
   <style>
-
   body {
+    margin: 0;
     background: white;
-
   }
 
 
+
  .header {
+   padding-top: 15px;
+   padding-left: 50px;
    font-family: Big Caslon;
    font-size: 1.5em;
    color: white;
    position: fixed;
-   top:0;
+   top: 0;
    width: 100%;
-   height: 80px;
-
-
+   height: 90px;
+   margin: 0;
+   z-index: 11;
  }
 
  /* p {
    font-family: Big Caslon;
  } */
+
+
+
+ .title_form {
+   font-size: 1.3em;
+   text-align: center;
+ }
 
  p.form {
    margin-left: 50px;
@@ -42,10 +51,19 @@
    font-size: 1.5em;
  }
 
+ a {
+   text-decoration: underline;
+   color:black;
+   text-decoration-color: red;
+ }
+
 #main {
  background-image: url("Images/apples_main.jpg");
  background-repeat: no-repeat;
  margin-top: 5px;
+ min-width: 1278px;
+ height: 100vh;
+ position: relative;
 }
 
 nav {
@@ -85,12 +103,30 @@ nav {
    padding-right: 50px;
    padding-bottom: 30px;
    margin-left: 50px;
+   margin-top: 150px;
    background-color: white;
+   max-width: 500px;
    opacity: 0.9;
    margin-top: 100px;
+   z-index: 1;
+   position: relative;
+   top: 60px;
  }
 
- #calculator, #result {
+ #items {
+   display: none;
+ }
+
+ #items.show{
+   display: block;
+ }
+
+ .item-option {
+   margin-bottom: 10px;
+   margin-right: 10px;
+ }
+
+#result {
    display: flex;
    display: inline-block;
    justify-content: space-between;
@@ -99,18 +135,51 @@ nav {
   #result {
    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
    max-width: 400px;
-   padding-top: 30px;
+   padding-top: 20px;
    padding-left: 30px;
    padding-bottom: 30px;
    background-color: white;
    opacity: 0.9;
-   margin-left: 150px;
+   display: none;
+   position: absolute;
+   bottom: 20px;
+   right: 110px;
+ }
+
+ #result.show {
+   display: flex;
+ }
+
+ .individual-item {
+   display: inline-block;
  }
 
  footer {
-   width: 100%;
-   background-color: #008080;
-   height: 120px;
+
+   min-width: 1278px;
+   background-color: #A80000;
+   height: 200px;
+   margin-top: 250px;
+   color: white;
+ }
+
+ .contact {
+  margin-top: 30px;
+   margin-left: 200px;
+   margin-right: 280px;
+ }
+
+ .social {
+   margin-top: 30px;
+ }
+
+
+ .contact, .social {
+   display: flex;
+   display: inline-block;
+   justify-content: space-between;
+   font-size: 1.1em;
+
  }
 
 
@@ -119,29 +188,91 @@ nav {
 <!--CSS stops here-->
 
 <!--HTML STARTS HERE-->
+<h1 class = "header" style = "background-color: #A80000 ">Plastic Kingdom</h1>
 <div id = "main">
-<h1><span class = "header" style = "background-color: #008080">Plastic Kingdom</span></h1>
 <div id = "calculator">
-<p class = "p_form">Plastic Calculator<br>Find out how much plastic goes to waste when you shop</p>
+<p class ="title_form"><strong>Plastic Calculator</strong></p>
+  <p>Find out how much plastic goes to waste when you shop</p>
 
 <!--This is the form with dropdown menus and submit button-->
 <form>
   <p class = "p_form">Choose a Foodshop</p>
   <select class="form-control" id = "shops">
-    <option value="Tesco Metro">Tesco Metro</option>
+    <option value="Tesco">Tesco</option>
     <option value="Marks & Spencer">Marks & Spencer</option>
     <option value="Lidl">Lidl</option>
     <option value="Sainsbury's">Sainsbury's</option>
   </select>
   <p class = "p_form">Choose an item you buy on a weekly basis</p>
-  <select class="form-control" id = "items">
-      <option value= "Apples">Apples</option>
-      <option value= "Avocados">Avocados</option>
-      <option value= "Bananas">Bananas</option>
-      <option value= "Brocoli">Brocoli</option>
-      <option value= "Potatoes">Potatoes</option>
-      <option value= "Tomatoes">Tomatoes</option>
-  </select>
+  <button id="show-items-button">Show items</button>
+  <div class ="form-control" id = "items">
+    <div class="individual-item">
+      <input class="item-option" type="checkbox"  value= "Apples"/>Apples
+    </div>
+    <div class="individual-item">
+      <input class="item-option" type= "checkbox" value= "Avocados"/>Avocados
+    </div>
+    <div class="individual-item">
+      <input class="item-option" type= "checkbox" value= "Bananas"/>Bananas
+    </div>
+    <div class="individual-item">
+      <input class="item-option" type= "checkbox" value= "Brocoli"/>Brocoli
+    </div>
+    <div class="individual-item">
+      <input class="item-option" type= "checkbox" value= "Carrots"/>Carrots
+    </div>
+    <div class="individual-item">
+      <input class="item-option" type= "checkbox" value= "Courgette"/>Courgette
+    </div>
+    <div class="individual-item">
+      <input class="item-option" type= "checkbox" value= "Cucumber"/>Cucumber
+    </div>
+    <div class="individual-item">
+      <input class="item-option" type= "checkbox" value= "Eggplant"/>Eggplant
+    </div>
+    <div class="individual-item">
+      <input class="item-option" type= "checkbox" value= "Green Grapes"/>Green Grapes
+    </div>
+    <div class="individual-item">
+      <input class="item-option" type= "checkbox" value= "Kale"/>Kale
+    </div>
+    <div class="individual-item">
+      <input class="item-option" type= "checkbox" value= "Kiwi"/>Kiwi
+    </div>
+    <div class="individual-item">
+      <input class="item-option" type= "checkbox" value= "Lemons"/>Lemons
+    </div>
+    <div class="individual-item">
+      <input class="item-option" type= "checkbox" value= "Nectarine"/>Nectarine
+    </div>
+    <div class="individual-item">
+      <input class="item-option" type= "checkbox" value= "Onions"/>Onions
+    </div>
+    <div class="individual-item">
+      <input class="item-option" type= "checkbox" value= "Oranges"/>Oranges
+    </div>
+    <div class="individual-item">
+      <input class="item-option" type= "checkbox" value= "Parsnip"/>Parsnip
+    </div>
+    <div class="individual-item">
+      <input class="item-option" type= "checkbox" value= "Pears"/>Pears
+    </div>
+    <div class="individual-item">
+      <input class="item-option" type= "checkbox" value= "Peppers"/>Peppers
+    </div>
+    <div class="individual-item">
+      <input class="item-option" type= "checkbox" value= "Potatoes"/>Potatoes
+    </div>
+    <div class="individual-item">
+      <input class="item-option" type= "checkbox" value= "Spinach"/>Spinach
+    </div>
+    <div class="individual-item">
+      <input class="item-option" type= "checkbox" value= "Sweet potatoes"/>Sweet potatoes
+    </div>
+    <div class="individual-item">
+      <input class="item-option" type= "checkbox" value= "Tomatoes"/>Tomatoes
+    </div>
+  </div>
 
   <p class = "p_form">Choose how you shop </p>
   <select class= "form-control" id = "plastic_or_no">
@@ -172,175 +303,199 @@ nav {
   </nav>
   <br><br><br><br>
 
+  <a href="improved_calculator_ok.html">
+    New Calculator
+  </a>
+
 
 <!--JAVASCRIPT STARTS HERE-->
 <script>
-
-
-
 /*This retrieves the CSV File. Even if I'm not using d3 it is useful to read data.
 Here, d3.csv converts the file into an array of objects*/
-  d3.csv("Foodshop List.csv", function (foodshop_data) {
-      console.log(foodshop_data);
+d3.csv("Foodshop List.csv", function (foodshop_data) {
+    console.log(foodshop_data);
+    /*forEach is used to iterate over the array of data and the + operator to
+    convert strings into numbers */
+      foodshop_data.forEach(function(d){
+          d[" Number of plastic packages"] = +d[" Number of plastic packages"];
+          d["Plastic Price"] = +d["Plastic Price"];
+          d["Plastic Free Price"] = +d["Plastic Free Price"];
+          d["Number of items"] = +d["Number of items"];
 
+      });
 
+      /*Creates variables that are equal to numbers to multiply the data by one, five and ten years*/
+        var fifty_two = 52;
+        var two_sixty = 260;
+        var five_twenty = 520;
 
-      /*forEach is used to iterate over the array of data and the + operator to
-      convert strings into numbers */
-          foodshop_data.forEach(function(d){
-            d[" Number of plastic packages"] = +d[" Number of plastic packages"];
-            d["Plastic Price"] = +d["Plastic Price"];
-            d["Plastic Free Price"] = +d["Plastic Free Price"];
-            d["Number of items"] = +d["Number of items"];
-
+        /*This are three little unknown functions to change the value of each
+        dropdown menu when there is a change*/
+        d3.select("#shops")
+          .on("change", function(d) {
+          select_shop = this.value;
+          console.log(select_shop)
+          console.log(filterData());
         });
 
-/*Creates variables that are equal to numbers to multiply the data by one, five and ten years*/
-          var fifty_two = 52;
-          var two_sixty = 260;
-          var five_twenty = 520;
-
-      /*This are three little unknown functions to change the value of each
-      dropdown menu when there is a change*/
-              d3.select("#shops")
-                .on("change", function(d) {
-                  select_shop = this.value;
-                  console.log(select_shop)
-                  console.log(filterData());
-
-                });
-
-
-              d3.select("#items")
-                  .on("change", function(d) {
-                    select_item = this.value;
-                    console.log(select_item)
-                    console.log(filterData());
-
-                  });
-
-
-
-
-
-              d3.select("#plastic_or_no")
-                    .on("change", function(d) {
-                      select_plastic = this.value;
-                      console.log(select_plastic)
-                      console.log(filterData());
-                    });
-
-
-
-
-/*select the submit button and give it a variable*/
-                  var submit_button = d3.select("#submit_");
-
-
-
-                  /*Creates a function so that when the user clicks on the submit button it updates
-                  the paragraph text to match the selection made by the user*/
-
-                                    submit_button.on("click", function update() {
-                                      d3.select("#result")
-                                        .data(filtered_data) /*Use the filter data instead of the original csv*/
-                                        .html(function(d){
-                                          if (select_plastic == "plastic"){
-                                            return  "If you buy " + d["Number of items"] + " " + select_item + " in "
-                                            + select_shop + " every week..." + "</br>" + "</br>" +"In one year, " + d[" Number of plastic packages"] * fifty_two
-                                            + " plastic packages will go to waste and you'd spend " + "£" + d["Plastic Price"] * fifty_two + "</br>" + "</br>"
-                                            + "In 5 years, " + d[" Number of plastic packages"] * two_sixty
-                                            + " plastic packages will go to waste and you'd spend " + "£" + d["Plastic Price"] * two_sixty + "." + "</br>" + "</br>"
-                                            + "In 10 years, " + d[" Number of plastic packages"] * five_twenty
-                                            + " plastic packages will go to waste and you'd spend " + "£" + d["Plastic Price"] * five_twenty + "." +"</br>" + "</br>"
-                                            + "Change your selection to see what would happen if you go plastic free.";
-                                          } else if (d["Plastic Free Option"] === "loose") {
-                                            return "If you buy " + d["Number of items"] + " " + d["Plastic Free Option"]
-                                            + " " + select_item + " in " + select_shop
-                                            + " every week..." + "</br>" + "</br>" + "In one year you'd generate zero plastic waste and would spend " + "£"
-                                            + d["Plastic Free Price"] * fifty_two + "</br>" + "</br>"
-                                            +"In 5 years, zero plastic waste and " + "£" + d["Plastic Free Price"] * two_sixty + "." + "</br>" + "</br>"
-                                            +"In 10 yeas, zero plastic waste and " + "£" + d["Plastic Free Price"] * five_twenty + ".";
-                                          } else {
-                                            return "Unfortunately, " + select_shop + " might not have any plastic free alternatives.";
-                                        }
-
-                                       });
-                                   });
-
-
-
-
-
-
-
-
-                          /*Creates variables to select the buttons and the options inside
-                          those buttons we created with html by their id*/
-
-
-                              var select_shop = d3.select("#shops").node().value;
-
-                              var select_item = d3.select("#items").node().value;
-
-                              var select_plastic = d3.select("#plastic_or_no").node().value;
-
-                              filterData();
-
-
-                  /*Create variable for the specific data we want and then creates a function that filters
-                  the data and links it to our dropdown menu buttons.*/
-                              var filtered_data;
-
-                              function filterData() {
-                                return filtered_data = foodshop_data.filter(function(d) {
-                                  return d.Foodshop === select_shop && d.Item === select_item || d[" Number of plastic packages"] && d["Plastic Price"] && d["Plastic Free Price"] && d["Plastic Free Option"] === select_plastic;
-                                });
-                              };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        var itemOptions = document.getElementById("items").getElementsByClassName("item-option")
+        for (var i = 0; i < itemOptions.length; ++i ) {
+          d3.select(itemOptions[i])
+            .on("change", function(d){
+              select_item = this.value;
+              console.log("changed")
+            });
+        }
+        // document.getElementById("items").getElementsByClassName("item-option").forEach(function(item){
+        //   if(item.className == "item-option") {
+        //     d3.select(item)
+        //        .on("change", function(d) {
+        //        select_item = this.value;
+        //
+        //      });
+        //   }
+        // })
+
+         d3.select("#plastic_or_no")
+               .on("change", function(d) {
+                 select_plastic = this.value;
+                 console.log(select_plastic)
+                 console.log(filterData());
+               });
+
+         /*select the submit button and give it a variable*/
+                var submit_button = d3.select("#submit_");
+                var show_items_button = document.getElementById('show-items-button');
+                var plasticPackagingObject = {
+                  "plastic" : "No plastic free option",
+                  "no plastic": "loose"
+                }
+                /*I created a function so that when the user clicks on the submit button it updates
+                the paragraph text to match the selection made by the user*/
+                console.log(show_items_button)
+                show_items_button.addEventListener("click", function(e){
+                  e.preventDefault()
+                  if (document.getElementById("items").classList.contains("show")) {
+                    document.getElementById("items").classList.remove('show')
+                    show_items_button.innerHTML = "Show items"
+                  } else {
+                    show_items_button.innerHTML = "Hide items"
+                    document.getElementById("items").classList.add('show')
+                  }
+                })
+
+
+
+                                  submit_button.on("click", function update() {
+                                    var filtered_data = foodshop_data.filter(function(data_item){
+                                      return data_item["Foodshop"] == select_shop;
+                                    })
+                                    var itemsFilteredDataArray = [];
+                                    selectedItems().forEach(function(selected_item){
+                                      filtered_data.forEach(function(data_item){
+                                        if (data_item.Item == selected_item) itemsFilteredDataArray.push(data_item);
+                                      })
+                                    })
+
+                                    var checkoutText = "";
+                                    itemsFilteredDataArray.forEach(function(item, index){
+                                      checkoutText = checkoutText + item["Number of items"] + " " + item.Item
+                                      if (index != itemsFilteredDataArray.length - 1) {
+                                        checkoutText = checkoutText + " , "
+                                      }
+                                    })
+                                    checkoutText = "If you buy " + checkoutText + ' in ' + select_shop + ":";
+                                    console.log(checkoutText)
+
+                                    var totalPlasticPackages = 0;
+                                    var totalPrice = 0;
+                                    var weeksInYear = 52;
+                                    var priceDifference = 0.0;
+                                    var result = document.getElementById('result');
+
+                                    itemsFilteredDataArray.forEach(function(item){
+                                      itemPriceDiff = parseFloat(item["Price Difference"]);
+                                      totalPlasticPackages += item[" Number of plastic packages"];
+                                      totalPrice += item["Plastic Price"]
+                                      priceDifference += itemPriceDiff;
+                                    })
+
+                                    totalPlasticPackages = totalPlasticPackages * weeksInYear;
+                                    totalPrice = (totalPrice * weeksInYear).toFixed(2);
+                                    priceDifference = (priceDifference * weeksInYear).toFixed(2);
+                                    console.log(totalPlasticPackages)
+                                    console.log(totalPrice)
+                                    console.log(priceDifference)
+
+                                    if (select_plastic == "plastic") {
+                                      checkoutText = checkoutText + "<br><br>" + "In one year, you'll generate " + totalPlasticPackages + " plastic packages."
+                                      if (priceDifference >= 0) {
+                                        checkoutText = checkoutText + "<br><br>" + "You'll save " + "£" + priceDifference + " if you buy plastic free and you'll generate zero waste."
+                                      } else {
+                                        checkoutText = checkoutText + "<br><br>" + "You will spend " + "£" + totalPrice + "<br><br>" + "If you go plastic free you'll generate zero waste."
+                                      }
+                                    } else {
+                                      checkoutText = checkoutText + "<br><br>" + "You generated zero waste!"
+                                      if (priceDifference >= 0) {
+                                        checkoutText = checkoutText + "<br><br>" + "...and saved " + "£" + priceDifference
+                                      }
+                                    }
+
+                                    result.classList.add('show');
+                                    result.innerHTML = checkoutText;
+                                 });
+
+                        /*Creates variables to select the buttons and the options inside
+                        those buttons we created with html by their id*/
+                            var select_shop = d3.select("#shops").node().value;
+                            var select_item = d3.select("#items").node().value;
+                            var select_plastic = d3.select("#plastic_or_no").node().value;
+                            filterData();
+                            function selectedItems() {
+                              var selectedItemsArray = [];
+                              for (var i = 0; i < itemOptions.length; ++i ) {
+                                if (itemOptions[i].checked) selectedItemsArray.push(itemOptions[i].value);
+                              }
+                              // document.getElementById("items").childNodes.forEach(function(item){
+                              //   if(item.className == "item-option") {
+                              //     if(item.checked) selectedItemsArray.push(item.value);
+                              //   }
+                              // })
+                              return selectedItemsArray;
+                            }
+
+                /*Create variable for the specific data we want and then creates a function that filters
+                the data and links it to our dropdown menu buttons.*/
+                            var filtered_data;
+
+                            function filterData() {
+                              return filtered_data = foodshop_data.filter(function(d) {
+                                console.log(d)
+                                return d.Foodshop === select_shop && d.Item === select_item || d[" Number of plastic packages"] && d["Plastic Price"] && d["Plastic Free Price"] && d["Plastic Free Option"] === select_plastic;
+                              });
+                            };
+
+                              });
 
 </script>
 </body>
 <footer>
-Photogallery<br>
-Contact information<br>
-links<br>
-Social media
+<div id = "footer_container">
+
+  <div class = "contact">
+<strong>Contact information</strong><br><br>
+Estefania Contreras Tellechea <br><br>
+estefaniacontrerast@gmail.com<br>
+</div>
+
+
+<div class = "social">
+<strong>Social media</strong> <br><br>
+ <a href= "https://www.instagram.com/estefaniacon/"><img src = "Images/instagram.png" alt ="Instagram Icon"></a> @estefaniacon <br>
+ <a href ="https://twitter.com/estefaniaconte"><img src = "Images/twitter.png" alt = "Twitter icon"></a> @estefaniaconte  <br>
+</div>
+
+</div>
+
 </footer>
 </html>

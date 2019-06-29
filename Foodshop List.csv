@@ -1,25 +1,88 @@
-Item,Foodshop, Number of plastic packages,Plastic Price,Plastic Free Option,Plastic Free Price,Number of items
-Apples,Tesco Metro,1,2,loose,2.4,4
-Avocados,Tesco Metro,1,1.75,loose,1.7,2
-Bananas,Tesco Metro,1,0.9,loose,0.7,6
-Brocoli,Tesco Metro,1,0.55,No plastic free option,No plastic free option,1
-Potatoes,Tesco Metro,1,1.5,No plastic free option,No plastic free option,2
-Tomatoes, Tesco Metro,1,0.69,No plastic free option,No plastic free option,6
-Apples,Marks & Spencer,1,2.8,loose,1.35,6
-Avocados,Marks & Spencer,2,2.2,loose,2.6,2
-Bananas,Marks & Spencer,1,1.6,loose,0.78,6
-Brocoli,Marks & Spencer,1,1,loose,0.5,1
-Potatoes,Marks & Spencer,1,2.5,loose,1.25,1.5
-Tomatoes,Marks & Spencer,2,1.6,loose,0.9,3
-Apples,Lidl,1,2.16,loose,1.99,1
-Avocados,Lidl,1,1.55,loose,1.9,2
-Bananas,Lidl,1,1.19,loose,0.76,6
-Brocoli,Lidl,1,0.99,No plastic free option,No plastic free option,1
-Potatoes,Lidl,1,1.45,loose,2.5,2.5
-Tomatoes,Lidl,2,1.69,loose,2.79,5
-Apples,Sainsbury's,1,2.6,loose,0.54,6
-Avocados,Sainsbury's,2,1.8,loose,2.2,2
-Bananas,Sainsbury's,1,0.9,loose,0.78,6
-Brocoli,Sainsbury's,1,0.55,No plastic free option,No plastic free option,1
-Potatoes,Sainsbury's,1,1.75,loose,2.5,2.5
-Tomatoes,Sainsbury's,1,0.7,loose,0.8,6
+Item,Foodshop, Number of plastic packages,Plastic Price,Plastic Free Option,Plastic Free Price,Number of items,Best Value,Price Difference
+Apples,Tesco,1,2,loose,2.4,4,Plastic,-0.4
+Avocados,Tesco,1,1.75,loose,1.7,2,Plastic Free,0.05
+Bananas,Tesco,1,0.9,loose,0.7,6,Plastic,-0.2
+Brocoli,Tesco,1,0.55,No plastic free option,No plastic free option,1,None,0
+Carrots,Tesco,1,0.59,loose,0.65,1kg,Plastic Free,0.06
+Courgette,Tesco,1,1.2,loose,1.2,3,Same Value,No Difference
+Cucumber,Tesco,1,1.5,loose,0.5,1,Plastic Free,1
+Eggplant,Tesco,1,2,loose,2.1,3,Plastic,-0.1
+Green Grapes,Tesco,2,2,loose,2,500g,Same Value,0
+Kale,Tesco,1,1.5,No plastic free option,No plastic free option,200g,None,0
+Kiwi,Tesco,2,1.5,loose,1.2,4,Plastic Free,0.3
+Lemons,Tesco,1,1.5,loose,1.2,4,Plastic,-0.3
+Nectarine,Tesco,2,2,No plastic free option,No plastic free option,3,None,0
+Onions,Tesco,1,0.85,loose,0.3,3,Plastic Free,0.55
+Oranges,Tesco,2,1,loose,1.2,4,Plastic,-0.2
+Parsnip,Tesco,1,0.4,loose,0.55,500g,Plastic,-0.15
+Pears,Tesco,1,1.5,loose,1.64,4,Plastic,-0.14
+Peppers,Tesco,1,1.29,loose,1.65,3,Plastic,-0.36
+Potatoes,Tesco,1,1.5,No plastic free option,No plastic free option,2,None,0
+Spinach,Tesco,1,2,No plastic free option,No plastic free option,500g,None,0
+Sweet potatoes,Tesco,1,0.97,loose,1,1kg,Plastic,-0.03
+Tomatoes,Tesco,1,0.69,No plastic free option,No plastic free option,6,None,0
+Apples,Marks & Spencer,1,2.8,loose,1.35,6,Plastic Free,0.55
+Avocados,Marks & Spencer,2,2.2,loose,2.6,2,Plastic,-0.4
+Bananas,Marks & Spencer,1,1.6,loose,0.78,6,Plastic Free,0.82
+Cucumber,Marks & Spencer,1,2,loose,0.8,1,Plastic Free,0.2
+Brocoli,Marks & Spencer,1,1,loose,0.5,1,Plastic Free,0.5
+Potatoes,Marks & Spencer,1,2.5,loose,1.25,1.5,Plastic Free,1.25
+Tomatoes,Marks & Spencer,2,1.6,loose,0.9,3,Plastic Free,0.7
+Apples,Lidl,1,2.16,loose,1.99,1,Plastic Free,0.17
+Avocados,Lidl,1,1.55,loose,1.9,2,Plastic,-0.35
+Cucumber,Lidl,1,1,No plastic free option,No plastic free option,1,None,0
+Bananas,Lidl,1,1.19,loose,0.76,6,Plastic Free,0.45
+Brocoli,Lidl,1,0.99,No plastic free option,No plastic free option,1,None,0
+Potatoes,Lidl,1,1.45,loose,2.5,2.5,Plastic,-1.05
+Tomatoes,Lidl,2,1.69,loose,2.79,5,Plastic,-1.02
+Apples,Sainsbury's,1,2.6,loose,0.54,6,Plastic Free,1.06
+Avocados,Sainsbury's,2,1.8,loose,2.2,2,Plastic,-0.4
+Bananas,Sainsbury's,1,0.9,loose,0.78,6,Plastic Free,0.28
+Brocoli,Sainsbury's,1,0.55,No plastic free option,No plastic free option,1,None,0
+Carrots,Sainsbury's,1,0.7,loose,0.65,1kg,Plastic Free,0.15
+Courgette,Sainsbury's,2,1.2,loose,1,3,Plastic Free,0.2
+Cucumber,Sainsbury's,1,1.1,loose,0.55,1,Plastic Free,0.46
+Eggplant,Sainsbury's,1,1.6,loose,1.5,3,Plastic Free,0.1
+Green Grapes,Sainsbury's,2,1.75,No plastic free option,No plastic free option,500g,None,0
+Kale,Sainsbury's,1,1.05,No plastic free option,No plastic free option,200g,None,0
+Kiwi,Sainsbury's,3,1.75,loose,1.4,4,Plastic Free,0.35
+Lemons,Sainsbury's,2,1.4,loose,1.2,4,Plastic Free,0.2
+Nectarines,Sainsbury's,3,1,No plastic free option,No plastic free option,4,None,0
+Onions,Sainsbury's,2,1.35,loose,0.33,3,Plastic Free,1.02
+Oranges,Sainsbury's,2,1.75,loose,1.2,4,Plastic Free,0.45
+Parsnip,Sainsbury's,1,0.5,loose,0.7,500g,Plastic,-0.2
+Pears,Sainsbury's,2,2,loose,1.24,4,Plastic Free,0.76
+Peppers,Sainsbury's,1,2.3,loose,1.5,3,Plastic Free,0.7
+Potatoes,Sainsbury's,1,1.75,loose,2.5,2.5,Plastic,-0.75
+Spinach,Sainsbury's,1,5,No plastic free option,No plastic free option,500g,None,0
+Sweet Potatoes,Sainsbury's,1,0.96,loose,0.95,1kg,Plastic Free,0.01
+Tomatoes,Sainsbury's,1,0.7,loose,0.8,6,Plastic,-0.1
+Apples,Aldi,1,2.5,loose,1.5,6,Plastic Free,1
+Avocados,Aldi,2,1.8,No plastic free option,No plastic free option,2,None,0
+Bananas,Aldi,1,2,loose,0.7,6,Plastic Free,1.3
+Brocoli,Aldi,1,1,loose,0.58,1,Plastic Free,0.42
+Cucumber,Aldi,1,2,loose,0.4,1,Plastic Free,0.6
+Potatoes,Aldi,1,1.5,loose,1,1.5,Plastic Free,0.5
+Tomatoes,Aldi,2,2.5,No plastic free option,No plastic free option,6,None,0
+Apples,Asda,1,1.2,loose,1.74,6,Plastic ,-0.54
+Avocados,Asda,1,1.6,loose,2,2,Plastic,-0.4
+Bananas,Asda,1,1,loose,0.84,6,Plastic Free,0.16
+Brocoli,Asda,1,0.55,No plastic free option,No plastic free option,1,None,0
+Carrots,Asda,1,60,loose,0.65,1kg,Plastic,-0.5
+Courgette,Asda,1,1.2,loose,1.5,3,Plastic,-0.3
+Cucumber,Asda,1,55,No plastic free option,No plastic free option,1,None,0
+Eggplant,Asda,1,2.1,loose,2.1,3,Same Value,0
+Green Grapes,Asda,1,1,No plastic free option,No plastic free option,500g,None,0
+Kale,Asda,1,0.6,No plastic free option,No plastic free option,200g,None,0
+Kiwi,Asda,1,65,No plastic free option,No plastic free option,4,None,0
+Lemons,Asda,2,0.89,loose,1.2,4,Plastic,-0.13
+Nectarines,Asda,2,2,No plastic free option,No plastic free option,4,None,0
+Onions,Asda,2,0.75,loose,0.51,3,Plastic Free,0.26
+Oranges,Asda,2,1.8,loose,1.2,4,Plastic Free,0.6
+Parsnip,Asda,2,0.54,No plastic free option,No plastic free option,500g,None,0
+Pears,Asda,2,1,loose,1.8,4,Plastic,-0.8
+Peppers,Asda,1,1.29,loose,1.65,3,Plastic,-0.36
+Potatoes,Asda,1,0.97,loose,0.65,1kg,Plastic Free,0.32
+Spinach,Asda,1,1.5,No plastic free option,No plastic free option,500g,None,0
+Sweet potatoes,Asda,2,1,loose,1,1kg,Same Value,0
+Tomatoes,Asda,2,1.25,loose,1,6,Plastic Free,0.25
