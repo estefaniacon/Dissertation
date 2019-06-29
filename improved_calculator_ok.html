@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="//d3js.org/d3.v4.min.js" charset="utf-8"></script>
+</head>
+<body>
+  <style>
+      #calculator {
+      /* border-radius: 20px; */
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      padding-top: 30px;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-bottom: 30px;
+      margin-left: 50px;
+      background-color: white;
+      opacity: 0.9;
+      margin-top: 100px;
+      z-index: -1;
+    }
+
+    #calculator, #result {
+      display: flex;
+      display: inline-block;
+      justify-content: space-between;
+    }
+
+     #result {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      max-width: 400px;
+      padding-top: 20px;
+      padding-left: 30px;
+      padding-bottom: 30px;
+      background-color: white;
+      opacity: 0.9;
+      margin-left: 150px;
+    }
+  </style>
+
+  <div id = "calculator">
+  <p class ="title_form"><strong>Plastic Calculator</strong></p>
+    <p>Find out how much plastic goes to waste when you shop</p>
+
+  <!--This is the form with dropdown menus and submit button-->
+  <form>
+    <p class = "p_form">Choose a Foodshop</p>
+    <select class="form-control" id = "shops">
+      <option value="Tesco">Tesco</option>
+      <option value="Marks & Spencer">Marks & Spencer</option>
+      <option value="Lidl">Lidl</option>
+      <option value="Sainsbury's">Sainsbury's</option>
+    </select>
+    <p class = "p_form">Choose an item you buy on a weekly basis</p>
+    <!-- <select class="form-control" id = "items"> -->
+        <!-- <form class= "form-control" id = "items"> -->
+        <div class ="form-control" id = "items">
+        <input class="item-option" type="checkbox"  value= "Apples"/>Apples
+        <input class="item-option" type= "checkbox" value= "Avocados"/>Avocados
+        <input class="item-option" type= "checkbox" value= "Bananas"/>Bananas
+        <input class="item-option" type= "checkbox" value= "Brocoli"/>Brocoli
+        <input class="item-option" type= "checkbox" value= "Potatoes"/>Potatoes
+        <input class="item-option" type= "checkbox" value= "Tomatoes"/>Tomatoes
+      <!-- </form> -->
+    <!-- </select> -->
+       </div>
+    <p class = "p_form">Choose how you shop </p>
+    <select class= "form-control" id = "plastic_or_no">
+        <option value= "plastic">with plastic packaging</option>
+        <option value= "no plastic">plastic free</option>
+    </select><br><br>
+
+    <input type="button" value= "Calculate plastic!" id = "submit_"/>
+  </form>
+  </div>
+
+
+  <p id = "result"></p>
+
+  <script>
+  /*This retrieves the CSV File. Even if I'm not using d3 it is useful to read data.
+Here, d3.csv converts the file into an array of objects*/
+  d3.csv("Foodshop List.csv", function (foodshop_data) {
+      console.log(foodshop_data);
+      /*forEach is used to iterate over the array of data and the + operator to
+      convert strings into numbers */
+        foodshop_data.forEach(function(d){
+            d[" Number of plastic packages"] = +d[" Number of plastic packages"];
+            d["Plastic Price"] = +d["Plastic Price"];
+            d["Plastic Free Price"] = +d["Plastic Free Price"];
+            d["Number of items"] = +d["Number of items"];
+
+        });
+
+        /*Creates variables that are equal to numbers to multiply the data by one, five and ten years*/
+          var fifty_two = 52;
+          var two_sixty = 260;
+          var five_twenty = 520;
+
+          /*This are three little unknown functions to change the value of each
+          dropdown menu when there is a change*/
+          d3.select("#shops")
+            .on("change", function(d) {
+            select_shop = this.value;
+            console.log(select_shop)
+            console.log(filterData());
+          });
+
+          document.getElementById("items").childNodes.forEach(function(item){
+            if(item.className == "item-option") {
+              d3.select(item)
+                 .on("change", function(d) {
+                 select_item = this.value;
+
+               });
+            }
+          })
+
+           d3.select("#plastic_or_no")
+                 .on("change", function(d) {
+                   select_plastic = this.value;
+                   console.log(select_plastic)
+                   console.log(filterData());
+                 });
+
+           /*select the submit button and give it a variable*/
+                  var submit_button = d3.select("#submit_");
+                  var plasticPackagingObject = {
+                    "plastic" : "No plastic free option",
+                    "no plastic": "loose"
+                  }
+                  /*I created a function so that when the user clicks on the submit button it updates
+                  the paragraph text to match the selection made by the user*/
+
+                                    submit_button.on("click", function update() {
+                                      var filtered_data = foodshop_data.filter(function(data_item){
+                                        return data_item["Foodshop"] == select_shop;
+                                      })
+                                      var itemsFilteredDataArray = [];
+                                      selectedItems().forEach(function(selected_item){
+                                        filtered_data.forEach(function(data_item){
+                                          if (data_item.Item == selected_item) itemsFilteredDataArray.push(data_item);
+                                        })
+                                      })
+
+                                      var checkoutText = "";
+                                      itemsFilteredDataArray.forEach(function(item, index){
+                                        checkoutText = checkoutText + item["Number of items"] + " " + item.Item
+                                        if (index != itemsFilteredDataArray.length - 1) {
+                                          checkoutText = checkoutText + " , "
+                                        }
+                                      })
+                                      checkoutText = "If you buy " + checkoutText
+                                      console.log(checkoutText)
+
+                                      var totalPlasticPackages = 0;
+                                      var totalPrice = 0;
+                                      var weeksInYear = 52;
+                                      var priceDifference = 0.0;
+
+                                      itemsFilteredDataArray.forEach(function(item){
+                                        itemPriceDiff = parseFloat(item["Price Difference"]);
+                                        totalPlasticPackages += item[" Number of plastic packages"];
+                                        totalPrice += item["Plastic Price"]
+                                        priceDifference += itemPriceDiff;
+                                      })
+
+                                      totalPlasticPackages = totalPlasticPackages * weeksInYear;
+                                      totalPrice = totalPrice * weeksInYear;
+                                      priceDifference = priceDifference * weeksInYear;
+                                      console.log(totalPlasticPackages)
+                                      console.log(totalPrice)
+                                      console.log(priceDifference)
+
+                                      if (select_plastic == "plastic") {
+                                        
+                                      } else {
+
+                                      }
+                                   });
+
+                          /*Creates variables to select the buttons and the options inside
+                          those buttons we created with html by their id*/
+                              var select_shop = d3.select("#shops").node().value;
+                              var select_item = d3.select("#items").node().value;
+                              var select_plastic = d3.select("#plastic_or_no").node().value;
+                              filterData();
+                              function selectedItems() {
+                                var selectedItemsArray = [];
+                                document.getElementById("items").childNodes.forEach(function(item){
+                                  if(item.className == "item-option") {
+                                    if(item.checked) selectedItemsArray.push(item.value);
+                                  }
+                                })
+                                return selectedItemsArray;
+                              }
+
+                  /*Create variable for the specific data we want and then creates a function that filters
+                  the data and links it to our dropdown menu buttons.*/
+                              var filtered_data;
+
+                              function filterData() {
+                                return filtered_data = foodshop_data.filter(function(d) {
+                                  console.log(d)
+                                  return d.Foodshop === select_shop && d.Item === select_item || d[" Number of plastic packages"] && d["Plastic Price"] && d["Plastic Free Price"] && d["Plastic Free Option"] === select_plastic;
+                                });
+                              };
+
+                                });
+
+  </script>
+  </body>
+  </html>
