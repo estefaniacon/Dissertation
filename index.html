@@ -135,9 +135,7 @@ nav {
   #result {
    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
    max-width: 400px;
-   padding-top: 20px;
-   padding-left: 30px;
-   padding-bottom: 30px;
+   padding: 25px;
    background-color: white;
    opacity: 0.9;
    display: none;
@@ -198,10 +196,14 @@ nav {
 <form>
   <p class = "p_form">Choose a Foodshop</p>
   <select class="form-control" id = "shops">
+    <option value="Aldi">Aldi</option>
     <option value="Tesco">Tesco</option>
     <option value="Marks & Spencer">Marks & Spencer</option>
     <option value="Lidl">Lidl</option>
     <option value="Sainsbury's">Sainsbury's</option>
+    <option value="Asda">Asda</option>
+
+
   </select>
   <p class = "p_form">Choose an item you buy on a weekly basis</p>
   <button id="show-items-button">Show items</button>
@@ -303,9 +305,6 @@ nav {
   </nav>
   <br><br><br><br>
 
-  <a href="improved_calculator_ok.html">
-    New Calculator
-  </a>
 
 
 <!--JAVASCRIPT STARTS HERE-->
@@ -313,29 +312,23 @@ nav {
 /*This retrieves the CSV File. Even if I'm not using d3 it is useful to read data.
 Here, d3.csv converts the file into an array of objects*/
 d3.csv("Foodshop List.csv", function (foodshop_data) {
-    console.log(foodshop_data);
     /*forEach is used to iterate over the array of data and the + operator to
     convert strings into numbers */
       foodshop_data.forEach(function(d){
           d[" Number of plastic packages"] = +d[" Number of plastic packages"];
           d["Plastic Price"] = +d["Plastic Price"];
           d["Plastic Free Price"] = +d["Plastic Free Price"];
-          d["Number of items"] = +d["Number of items"];
-
       });
 
       /*Creates variables that are equal to numbers to multiply the data by one, five and ten years*/
         var fifty_two = 52;
-        var two_sixty = 260;
-        var five_twenty = 520;
+
 
         /*This are three little unknown functions to change the value of each
         dropdown menu when there is a change*/
         d3.select("#shops")
           .on("change", function(d) {
           select_shop = this.value;
-          console.log(select_shop)
-          console.log(filterData());
         });
 
         var itemOptions = document.getElementById("items").getElementsByClassName("item-option")
@@ -343,24 +336,12 @@ d3.csv("Foodshop List.csv", function (foodshop_data) {
           d3.select(itemOptions[i])
             .on("change", function(d){
               select_item = this.value;
-              console.log("changed")
             });
-        }
-        // document.getElementById("items").getElementsByClassName("item-option").forEach(function(item){
-        //   if(item.className == "item-option") {
-        //     d3.select(item)
-        //        .on("change", function(d) {
-        //        select_item = this.value;
-        //
-        //      });
-        //   }
-        // })
+        };
 
          d3.select("#plastic_or_no")
                .on("change", function(d) {
                  select_plastic = this.value;
-                 console.log(select_plastic)
-                 console.log(filterData());
                });
 
          /*select the submit button and give it a variable*/
@@ -369,10 +350,9 @@ d3.csv("Foodshop List.csv", function (foodshop_data) {
                 var plasticPackagingObject = {
                   "plastic" : "No plastic free option",
                   "no plastic": "loose"
-                }
+                };
                 /*I created a function so that when the user clicks on the submit button it updates
                 the paragraph text to match the selection made by the user*/
-                console.log(show_items_button)
                 show_items_button.addEventListener("click", function(e){
                   e.preventDefault()
                   if (document.getElementById("items").classList.contains("show")) {
@@ -382,20 +362,20 @@ d3.csv("Foodshop List.csv", function (foodshop_data) {
                     show_items_button.innerHTML = "Hide items"
                     document.getElementById("items").classList.add('show')
                   }
-                })
+                });
 
 
 
                                   submit_button.on("click", function update() {
                                     var filtered_data = foodshop_data.filter(function(data_item){
                                       return data_item["Foodshop"] == select_shop;
-                                    })
+                                    });
                                     var itemsFilteredDataArray = [];
                                     selectedItems().forEach(function(selected_item){
                                       filtered_data.forEach(function(data_item){
                                         if (data_item.Item == selected_item) itemsFilteredDataArray.push(data_item);
-                                      })
-                                    })
+                                      });
+                                    });
 
                                     var checkoutText = "";
                                     itemsFilteredDataArray.forEach(function(item, index){
@@ -403,8 +383,10 @@ d3.csv("Foodshop List.csv", function (foodshop_data) {
                                       if (index != itemsFilteredDataArray.length - 1) {
                                         checkoutText = checkoutText + " , "
                                       }
-                                    })
-                                    checkoutText = "If you buy " + checkoutText + ' in ' + select_shop + ":";
+                                    });
+                                    checkoutText = "If you buy " + checkoutText;
+                                    if (select_plastic != 'plastic') checkoutText = checkoutText + ' without plastic packaging ';
+                                    checkoutText = checkoutText + ' in ' + select_shop + ":";
                                     console.log(checkoutText)
 
                                     var totalPlasticPackages = 0;
@@ -418,7 +400,7 @@ d3.csv("Foodshop List.csv", function (foodshop_data) {
                                       totalPlasticPackages += item[" Number of plastic packages"];
                                       totalPrice += item["Plastic Price"]
                                       priceDifference += itemPriceDiff;
-                                    })
+                                    });
 
                                     totalPlasticPackages = totalPlasticPackages * weeksInYear;
                                     totalPrice = (totalPrice * weeksInYear).toFixed(2);

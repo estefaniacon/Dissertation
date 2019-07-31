@@ -1,4 +1,7 @@
-<style>
+
+  body {
+    margin: 0;
+  }
 
    a {
      text-decoration: none;
@@ -126,5 +129,3 @@
      .next_story {
        margin-bottom: 180px;
      }
-
- </style>
